@@ -29,6 +29,9 @@ require_once './vendor/autoload.php';
                 <tr>
                     <td><?=$g['id']?></td>
                     <td><?=$g['nome']?></td>
+                    <td>
+                        <a href="update.php?id=<?= $g['id'] ?>">Editar</a>
+                    </td>
                 </tr>
             <?php endforeach ?>
         </table>
