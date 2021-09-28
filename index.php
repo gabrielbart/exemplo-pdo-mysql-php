@@ -5,7 +5,7 @@ require_once './vendor/autoload.php';
 
     $bd = new MySQLConnection(); //PDO('mysql:host=localhost;dname=biblioteca', 'root', '')
     
-    $comando = $bd->prepare('SELECT * FROM generos')
+    $comando = $bd->prepare('SELECT * FROM generos');
     $comando->execute();
     
     $generos = $comando->fetchAll(PDO::FETCH_ASSOC);
