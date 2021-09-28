@@ -1,3 +1,19 @@
+<?php
+require_once './vendor/autoload.php';
+
+use ExemploPDOMySQL\MySQLConnection;
+
+if($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $bd = new MySQLConnection();
+
+    $comando = $bd->prepare('INSERT INTO generos(nome) VALUES(:nome)');
+    $comando->execute([':nome'=> $_POST['nome']]);
+    
+    header('location:/index.php')
+}
+
+?>
+
 <!DOCTYPE html>
     <html lang="pt-br">
     <head>

@@ -1,16 +1,13 @@
 <?php
 require_once './vendor/autoload.php';
 
-use ExemploPDOMySQL\MySQLConnection;
+    use ExemploPDOMySQL\MySQLConnection; //PDO
 
-if($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $bd = new MySQLConnection();
-
-    $comando = $bd->prepare('INSERT INTO generos(nome) VALUES(:nome)');
-    $comando->execute([':nome'=> $_POST['nome']]);
+    $bd = new MySQLConnection(); //PDO('mysql:host=localhost;dname=biblioteca', 'root', '')
+    $comando = $bd->prepare('SELECT * FROM generos')
+    $comando->execute();
     
-    header('location:/index.php')
-}
+    $generos = $comando->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
