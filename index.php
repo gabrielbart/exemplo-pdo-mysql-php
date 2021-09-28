@@ -1,12 +1,16 @@
 <?php
 require_once './vendor/autoload.php';
 
-use ExemploPDOMySQL\MySQLConnection; //PDO
-$bd = new MySQLConnection(); //PDO('mysql:host=localhost;dbname=biblioteca', 'root', '');
+use ExemploPDOMySQL\MySQLConnection;
 
-$comando = $bd->prepare('SELECT * FROM generos');
-$comando->execute();
-$generos = $comando->fetchAll(PDO::FETCH_ASSOC);
+if($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $bd = new MySQLConnection();
+
+    $comando = $bd->prepare('INSERT INTO generos(nome) VALUES(:nome)');
+    $comando->execute([':nome'=> $_POST['nome']]);
+    
+    header('location:/index.php')
+}
 
 ?>
 
@@ -17,6 +21,7 @@ $generos = $comando->fetchAll(PDO::FETCH_ASSOC);
         <title>Biblioteca</title>
     </head>
     <body>
+        <a href="insert.php">Novo Gênero</a>
         <table>
             <tr>
                 <th>Id</th>
